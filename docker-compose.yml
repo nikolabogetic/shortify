@@ -22,7 +22,7 @@ services:
       - DATABASE_URL=postgresql://postgres:mysecretpassword@postgresdb:5432/shortify
       - WAIT_HOSTS=postgresdb:5432
       - WAIT_HOSTS_TIMEOUT=300
-      - WAIT_SLEEP_INTERVAL=30
+      - WAIT_SLEEP_INTERVAL=5
       - WAIT_HOST_CONNECT_TIMEOUT=30
     links:
       - db

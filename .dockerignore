@@ -1,5 +1,6 @@
 .cache
-__pycache__
 venv/
 .git*
 **/*.pyc
+logs/
+app.db

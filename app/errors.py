@@ -1,4 +1,5 @@
-from app import app, db
+from flask import current_app as app
+from . import db
 
 
 @app.errorhandler(404)
