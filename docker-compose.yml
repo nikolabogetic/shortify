@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:12
+    container_name: postgresdb
+    environment:
+      - POSTGRES_DB=shortify
+      - POSTGRES_PASSWORD=mysecretpassword
+    networks: 
+      - shortify
+
+  web:
+    build: .
+    ports:
+      - 8080:5000
+    volumes:
+      - .:/usr/src/app
+    command: sh -c "/wait && flask run --host=0.0.0.0"
+    environment:
+      - FLASK_DEBUG=1
+      - DATABASE_URL=postgresql://postgres:mysecretpassword@postgresdb:5432/shortify
+      - WAIT_HOSTS=postgresdb:5432
+      - WAIT_HOSTS_TIMEOUT=300
+      - WAIT_SLEEP_INTERVAL=30
+      - WAIT_HOST_CONNECT_TIMEOUT=30
+    links:
+      - db
+    depends_on: 
+      - db
+    networks: 
+      - shortify
+    restart: always
+    
+
+
+networks:
+  shortify:
+    driver: bridge
