@@ -5,15 +5,20 @@ from .models import Url, db
 
 @app.route('/')
 def home():
-    return 'ok', 200
+    return 'Welcome to Shortify! Usage: https://github.com/nikolabogetic/shortify', 200
 
 @app.route('/<short_code>')
 def retrieve(short_code):
     """Get full URL from short code and issue redirect"""
     # Decode the base62 short code into numeric index
-    index = int(codext.decode(short_code, 'base62'))
-    url = Url.query.filter_by(id=index).first_or_404()
+    try:
+        index = int(codext.decode(short_code, 'base62'))
+        url = Url.query.filter_by(id=index).first_or_404()
+    except ValueError as e:
+        app.logger.error(e)
+        return 'This value is not supported. Expecting base62-encoded numeric strings.', 400
     return redirect(url.url, code=302)
+    
 
 @app.route('/submit', methods=['POST'])
 def parse_request():
