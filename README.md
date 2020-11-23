@@ -38,3 +38,10 @@ curl -X POST 'http://127.0.0.1:8080/submit' \
 curl -X GET 'http://127.0.0.1:8080/48VIcsBN5UX'
 ```
 
+### Run tests:
+```
+$ python3 -m venv venv
+$ . venv/bin/activate
+$ pip install -r requirements.txt
+$ pytest --cov=app
+```
