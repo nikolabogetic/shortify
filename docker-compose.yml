@@ -18,7 +18,6 @@ services:
       - .:/usr/src/app
     command: sh -c "/wait && flask run --host=0.0.0.0"
     environment:
-      - FLASK_DEBUG=1
       - DATABASE_URL=postgresql://postgres:mysecretpassword@postgresdb:5432/shortify
       - WAIT_HOSTS=postgresdb:5432
       - WAIT_HOSTS_TIMEOUT=300

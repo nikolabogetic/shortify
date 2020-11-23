@@ -8,7 +8,12 @@ Shortify is a URL shortener, like bit.ly or tinyurl. You can POST the long URL, 
 
 
 ## Usage
-Start:
+
+It is recommended to set a database password in `docker-compose.yml`
+
+### Start:
+
+
 ```
 $ docker-compose build
 $ docker-compose up
@@ -22,7 +27,7 @@ On the first run, Postgres needs time to initialize the database. To avoid error
 
 
 
-Make requests:
+### Make requests:
 ```
 # Submit long URL, get short URL
 curl -X POST 'http://127.0.0.1:8080/submit' \
