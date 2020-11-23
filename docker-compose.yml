@@ -14,8 +14,6 @@ services:
     build: .
     ports:
       - 8080:5000
-    volumes:
-      - .:/usr/src/app
     command: sh -c "/wait && flask run --host=0.0.0.0"
     environment:
       - DATABASE_URL=postgresql://postgres:mysecretpassword@postgresdb:5432/shortify
